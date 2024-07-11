@@ -48,7 +48,6 @@ def compute_day_gains(nb_seats, paying_guests, guest_movements):
 
     # Iterate through the list of guest movements
     for guest in guest_movements:
-        print(seats_in_use)
         # Confirm that there's an available seat
         if seats_in_use < nb_seats:
             if guest in guest_tracker:
