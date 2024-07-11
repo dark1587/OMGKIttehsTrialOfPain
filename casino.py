@@ -69,7 +69,7 @@ def compute_day_gains(nb_seats, paying_guests, guest_movements):
     for guest in guest_tracker.items():
         # Confirm that the guest has entered and exited
         # the restaurant. Any even value will return a modulo
-        # of zero.
+        # of zero, meaning they have entered and existed the restaurant
         if guest[1] % 2 == 0:
             # Add the amount the guest was willing to pay to the total,
             # derived from the guest's payment amount in the paying_guests
