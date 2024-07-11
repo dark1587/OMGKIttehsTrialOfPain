@@ -48,14 +48,24 @@ def compute_day_gains(nb_seats, paying_guests, guest_movements):
 
     # Iterate through the list of guest movements
     for guest in guest_movements:
+        print(seats_in_use)
         # Confirm that there's an available seat
         if seats_in_use < nb_seats:
             if guest in guest_tracker:
                 # Existing customer!
                 # Add 1 to the guest_tracker dict
-                # Free up a seat
                 guest_tracker[guest] += 1
-                seats_in_use -= 1
+
+                # Check to see if the guest is leaving or entering
+                # If mod 2 = 0, that means the guest has entered and exited
+                # If mod 2 = 1, the means the guest has just entered the
+                # restaurant
+                if guest_tracker[guest] % 2 == 0:
+                    # Free up a seat
+                    seats_in_use -= 1
+                else:
+                    # Allocate a seat
+                    seats_in_use += 1
             else:
                 # New customer!
                 # Add an entry to the guest_tracker
@@ -77,7 +87,7 @@ def compute_day_gains(nb_seats, paying_guests, guest_movements):
             try:
                 total += paying_guests[guest[0]]
             except IndexError:
-                print(f'Missing payment amount for guest {guest[0]}')
+                print(f'Missing payment information for guest {guest[0]}')
                 continue
 
     return total
