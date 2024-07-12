@@ -77,9 +77,8 @@ def compute_day_gains(nb_seats, paying_guests, guest_movements):
     # The 2nd tuple item is the number of visits
     for guest in guest_tracker.items():
         # Confirm that the guest has entered and exited
-        # the restaurant. Any even value will return a mod 2
-        # of zero, meaning they have entered and exited the restaurant
-        if guest[1] % 2 == 0:
+        # the restaurant at least once.
+        if guest[1] > 1:
             # Add the amount the guest paid to the total, derived
             # from the guest's payment amount in the paying_guests list
             try:
@@ -96,7 +95,7 @@ def main():
     """
     nb_seats = 100
     paying_guests = [25, 10, 5, 30, 15]
-    guest_movements = [4, 4, 3, 2, 3, 0, 0, 2, 4, 4, 3, 3, 7, 7]
+    guest_movements = [4, 4, 3, 2, 3, 0, 0, 2, 4, 4, 3, 7, 7, 3]
 
     result = compute_day_gains(nb_seats, paying_guests, guest_movements)
 
